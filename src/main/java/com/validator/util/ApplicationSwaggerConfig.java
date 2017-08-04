@@ -15,7 +15,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 /**
  * Java config for Springfox swagger documentation plugin
  *
- * @author Evgene Artemenko
+ * @author Leonid Dubravsky
  *
  */
 
@@ -36,14 +36,14 @@ public class ApplicationSwaggerConfig {
 
     private ApiInfo getApiInfo() {
         return new ApiInfo(
-                "REST TeamGetter backend Api Documentation",
-                "This is REST API documentation of the Spring TeamGetter backend",
+                "REST Validator backend Api Documentation",
+                "This is REST API documentation of the Spring Validator",
                 "1.0",
-                "TeamGetter backend terms of service",
+                "Validator terms of service",
                 new Contact(
-                        "Evgene Suleimanov",
+                        "Leonid Dubravsky",
                         " ",
-                        "evgenesuleimanov@gmail.com"),
+                        "efficeon2011@gmail.com"),
                 "Apache 2.0",
                 "http://www.apache.org/licenses/LICENSE-2.0");
     }
