@@ -46,9 +46,6 @@ public class ValidatorForEndDateImpl implements Validator {
 
         if (!isValidationSuccessfully) {
             setMessage(jsonObjValidationMSG.toString());
-        }
-
-        if (!isValidationSuccessfully) {
             jsonArrayAnswer.put(jsonObjValidationMSG);
         }
 
