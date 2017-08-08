@@ -33,18 +33,11 @@ public class MasterValidatorImpl {
         ValidatorForWeekendImpl validatorForWeekend = new ValidatorForWeekendImpl(jsonArrayAnswer);
         ValidatorForISOImpl validatorForISO = new ValidatorForISOImpl(jsonArrayAnswer);
         ValidatorForCounterpartyImpl validatorForCustomer = new ValidatorForCounterpartyImpl(jsonArrayAnswer);
-        ValidatorForStyleImpl validatorForStyle = new ValidatorForStyleImpl(jsonArrayAnswer);
-        ValidatorForStartDateImpl validatorForStartDate = new ValidatorForStartDateImpl(jsonArrayAnswer);
-        ValidatorForEndDateImpl validatorForEndDate = new ValidatorForEndDateImpl(jsonArrayAnswer);
 
         validators.add(validatorForBeforeDate);
         validators.add(validatorForWeekend);
         validators.add(validatorForISO);
         validators.add(validatorForCustomer);
-        validators.add(validatorForStyle);
-        validators.add(validatorForStartDate);
-        validators.add(validatorForEndDate);
-
     }
 
     public void executeAllValidators()

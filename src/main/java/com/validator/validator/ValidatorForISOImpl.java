@@ -2,6 +2,7 @@ package com.validator.validator;
 
 import com.validator.service.CheckCurrencyISO4217Service;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -24,30 +25,26 @@ public class ValidatorForISOImpl implements Validator {
 
         boolean isValidationSuccessfully = false;
 
-        if (!jsonObj.get("type").equals("VanillaOption")) {
-            return true;
-        }
+            String ccyPair = (String) jsonObj.get("ccyPair");
+            String fromCurrency = ccyPair.substring(0, 3);
+            String toCurrency = ccyPair.substring(3);
 
-        String payCcy = (String) jsonObj.get("payCcy");
-        String premiumCcy = (String) jsonObj.get("premiumCcy");
-
-        boolean isPayCcy = CheckCurrencyISO4217Service.isValidCurrencyISO4217(payCcy);
-        boolean isPremiumCcy = CheckCurrencyISO4217Service.isValidCurrencyISO4217(premiumCcy);
+        boolean isFrom = CheckCurrencyISO4217Service.isValidCurrencyISO4217(fromCurrency);
+        boolean isTo = CheckCurrencyISO4217Service.isValidCurrencyISO4217(toCurrency);
 
         JSONObject jsonMessage1 = new JSONObject();
         JSONObject jsonMessage2 = new JSONObject();
 
-        if (!isPayCcy) {
+        if (!isFrom) {
             isValidationSuccessfully = true;
-            jsonMessage1.put("ErrorType", "payCcy invalid");
+            jsonMessage1.put("ErrorType", "ccyPair(currency from) invalid");
             jsonMessage1.put("TradeNumber", tradeNumber);
             jsonArrayAnswer.put(jsonMessage1);
         }
 
-        if (!isPremiumCcy) {
-
+        if (!isTo) {
             isValidationSuccessfully = true;
-            jsonMessage2.put("ErrorType", "premium invalid");
+            jsonMessage2.put("ErrorType", "ccyPair(currency to) invalid");
             jsonMessage2.put("TradeNumber", tradeNumber);
             jsonArrayAnswer.put(jsonMessage2);
         }
@@ -66,7 +63,6 @@ public class ValidatorForISOImpl implements Validator {
 
     @Override
     public void setMessage(String message) {
-
         this.message = message;
     }
 }

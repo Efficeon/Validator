@@ -24,10 +24,6 @@ public class ValidatorForWeekendImpl implements Validator {
 
         boolean isValidationSuccessfully = true;
 
-        if (!(jsonObj.get("type").equals("Spot") || jsonObj.get("type").equals("Forward"))) {
-            return true;
-        }
-
         String valueDate = (String) jsonObj.get("valueDate");
 
         boolean result = CheckDateService.isDateFallInWeekend(valueDate);

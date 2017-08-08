@@ -24,10 +24,6 @@ public class ValidatorForBeforeDateImpl implements Validator {
 
         boolean isValidationSuccessfully = true;
 
-        if (!(jsonObject.get("type").equals("Spot") || jsonObject.get("type").equals("Forward"))) {
-            return true;
-        }
-
         String valueDate = (String) jsonObject.get("valueDate");
         String tradeDate = (String) jsonObject.get("tradeDate");
 
@@ -37,7 +33,7 @@ public class ValidatorForBeforeDateImpl implements Validator {
         if (isBeforeDate) {
             isValidationSuccessfully = false;
 
-            answerJsonMessage.put("ErrorType", "Incorrect end date");
+            answerJsonMessage.put("ErrorType", "Incorrect date(value date cannot be before trade date)");
             answerJsonMessage.put("TradeNumber", tradeNumber);
         }
 
